@@ -13,7 +13,7 @@ export function getDeliveries(req: Request, res: Response) {
 export function addDelivery(req: Request, res: Response) {
   const deliveriesJson = readFileSync(jsonDir, "utf8");
   const deliveries = JSON.parse(deliveriesJson);
-  deliveries[deliveries.length] = req.body;
+  deliveries.push(req.body);
   writeFileSync(jsonDir, JSON.stringify(deliveries));
   res.status(201).send(req.body);
 }
